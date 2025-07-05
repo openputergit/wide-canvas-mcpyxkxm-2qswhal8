@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LearnItLive - Global Expert Tutoring</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Smooth scrolling for the whole page */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%, #1E40AF 200%);
+            animation: gradientMove 15s ease infinite;
+            background-size: 200% 200%;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50% }
+            50% { background-position: 100% 50% }
+            100% { background-position: 0% 50% }
+        }
+
+        /* Glass effect for cards */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+        }
+
+        /* Enhanced card hover effect */
+        .card-hover {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Floating animation for icons */
+        .floating-icon {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Ripple effect for buttons */
+        .ripple-button {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .ripple-button:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
+            background-repeat: no-repeat;
+            background-position: 50%;
+            transform: scale(10, 10);
+            opacity: 0;
+            transition: transform .5s, opacity 1s;
+        }
+
+        .ripple-button:active:after {
+            transform: scale(0, 0);
+            opacity: 0.3;
+            transition: 0s;
+        }
+
+        /* Gradient text effect */
+        .gradient-text {
+            background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Slide-up animation for sections */
+        .slide-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+
+        .slide-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Pulse animation for CTAs */
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold gradient-text">LearnItLive</div>
+            <div class="hidden md:flex space-x-6">
+                <a href="#" class="text-gray-600 hover:text-blue-600">How It Works</a>
+                <a href="#" class="text-gray-600 hover:text-blue-600">Find Tutors</a>
+                <a href="#" class="text-gray-600 hover:text-blue-600">Categories</a>
+                <a href="#" class="text-gray-600 hover:text-blue-600">Become a Tutor</a>
+            </div>
+            <div class="flex space-x-4">
+                <button class="px-4 py-2 text-blue-600 hover:text-blue-700">Login</button>
+                <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 ripple-button pulse">Sign Up</button>
+           </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="gradient-bg">
+        <div class="container mx-auto px-4 py-16 md:py-24">
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div class="text-white">
+                    <h1 class="text-4xl md:text-6xl font-bold mb-6">Learn It Live with Global Experts</h1>
+                    <p class="text-xl mb-8 opacity-90">Connect with skilled tutors worldwide for real-time, personalized learning in tech, home repairs, cooking, and more.</p>
+                    <div class="bg-white rounded-lg p-2 flex">
+                        <input type="text" placeholder="What do you want to learn?" class="flex-1 px-4 py-2 outline-none">
+                        <button class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 ripple-button">Search</button>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4" alt="Live Learning" class="rounded-lg shadow-xl">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Categories -->
+    <div class="container mx-auto px-4 py-16">
+        <h2 class="text-3xl font-bold mb-8 text-center">Popular Learning Categories</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 slide-up">
+            <div class="glass-card p-6 rounded-xl card-hover">
+                <i class="bi bi-tools text-4xl text-blue-600 mb-4 floating-icon"></i>
+                <h3 class="text-xl font-semibold mb-2">Home Repair</h3>
+                <p class="text-gray-600 mb-4">Fix your sink with a pro from India, repair appliances, and more.</p>
+                <a href="#" class="text-blue-600 hover:text-blue-700">Explore →</a>
+            </div>
+            <div class="glass-card p-6 rounded-xl card-hover">
+                <i class="bi bi-laptop text-4xl text-blue-600 mb-4 floating-icon"></i>
+                <h3 class="text-xl font-semibold mb-2">Technology</h3>
+                <p class="text-gray-600 mb-4">Learn coding, design, digital marketing from tech experts.</p>
+                <a href="#" class="text-blue-600 hover:text-blue-700">Explore →</a>
+            </div>
+            <div class="glass-card p-6 rounded-xl card-hover">
+                <i class="bi bi-palette text-4xl text-blue-600 mb-4 floating-icon"></i>
+                <h3 class="text-xl font-semibold mb-2">Creative Skills</h3>
+                <p class="text-gray-600 mb-4">Master cooking, art, music with passionate creators.</p>
+                <a href="#" class="text-blue-600 hover:text-blue-700">Explore →</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- How It Works -->
+    <div class="bg-gray-100 py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-12 text-center gradient-text">How LearnItLive Works</h2>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center text-white text-xl font-bold mx-auto mb-4">1</div>
+                    <h3 class="font-semibold mb-2">Choose Your Skill</h3>
+                    <p class="text-gray-600">Browse categories and find the skill you want to learn</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center text-white text-xl font-bold mx-auto mb-4">2</div>
+                    <h3 class="font-semibold mb-2">Select an Expert</h3>
+                    <p class="text-gray-600">Pick from our verified global tutors based on reviews</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center text-white text-xl font-bold mx-auto mb-4">3</div>
+                    <h3 class="font-semibold mb-2">Schedule Session</h3>
+                    <p class="text-gray-600">Book a time that works for both you and the tutor</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center text-white text-xl font-bold mx-auto mb-4">4</div>
+                    <h3 class="font-semibold mb-2">Learn Live</h3>
+                    <p class="text-gray-600">Connect via video call and learn in real-time</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t">
+        <div class="container mx-auto px-4 py-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h4 class="font-bold mb-4">LearnItLive</h4>
+                    <p class="text-gray-600">Connect with global experts for live, personalized learning.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Categories</h4>
+                    <ul class="space-y-2 text-gray-600">
+                        <li><a href="#" class="hover:text-blue-600">Home Repair</a></li>
+                        <li><a href="#" class="hover:text-blue-600">Technology</a></li>
+                        <li><a href="#" class="hover:text-blue-600">Creative Skills</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Company</h4>
+                    <ul class="space-y-2 text-gray-600">
+                        <li><a href="#" class="hover:text-blue-600">About Us</a></li>
+                        <li><a href="#" class="hover:text-blue-600">Careers</a></li>
+                        <li><a href="#" class="hover:text-blue-600">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Support</h4>
+                    <ul class="space-y-2 text-gray-600">
+                        <li><a href="#" class="hover:text-blue-600">Help Center</a></li>
+                        <li><a href="#" class="hover:text-blue-600">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-blue-600">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t mt-8 pt-8 text-center text-gray-600">
+                <p>© 2023 LearnItLive. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Intersection Observer for slide-up animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all slide-up elements
+        document.querySelectorAll('.slide-up').forEach((el) => observer.observe(el));
+
+        // Ripple effect for buttons
+        document.querySelectorAll('.ripple-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                const rect = button.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const ripple = document.createElement('span');
+                ripple.style.cssText = `
+                    position: absolute;
+                    background: rgba(255, 255, 255, 0.7);
+                    transform: translate(-50%, -50%);
+                    pointer-events: none;
+                    border-radius: 50%;
+                    width: ${button.offsetWidth * 2}px;
+                    height: ${button.offsetWidth * 2}px;
+                    left: ${x}px;
+                    top: ${y}px;
+                `;
+
+                button.appendChild(ripple);
+
+                setTimeout(() => {
+                    ripple.remove();
+                }, 1000);
+            });
+        });
+
+        // Mobile menu toggle
+        const mobileMenu = () => {
+            const menu = document.querySelector('.md\\:flex');
+            menu.classList.toggle('hidden');
+        };
+
+        // Search functionality
+        document.querySelector('button').addEventListener('click', () => {
+            const searchTerm = document.querySelector('input').value;
+            if (searchTerm) {
+                // Implement search logic here
+                console.log('Searching for:', searchTerm);
+            }
+        });
+    </script>
+<script>document.body.addEventListener('wheel', e => { if (!e.ctrlKey) return; e.preventDefault(); return }, { passive: false })</script>
+	</body>
+</html>
